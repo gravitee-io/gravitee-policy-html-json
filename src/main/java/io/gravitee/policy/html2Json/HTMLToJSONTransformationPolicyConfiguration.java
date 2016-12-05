@@ -19,6 +19,10 @@ import io.gravitee.policy.api.PolicyConfiguration;
 
 import java.util.List;
 
+/**
+ * @author Azize ELAMRANI (azize.elamrani at graviteesource.com)
+ * @author GraviteeSource Team
+ */
 @SuppressWarnings("unused")
 public class HTMLToJSONTransformationPolicyConfiguration implements PolicyConfiguration {
 

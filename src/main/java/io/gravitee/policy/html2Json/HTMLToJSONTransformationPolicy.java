@@ -20,6 +20,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.gravitee.common.http.MediaType;
 import io.gravitee.gateway.api.Response;
 import io.gravitee.gateway.api.buffer.Buffer;
+import io.gravitee.gateway.api.http.stream.TransformableResponseStreamBuilder;
 import io.gravitee.gateway.api.http.stream.TransformableStreamBuilder;
 import io.gravitee.gateway.api.stream.ReadWriteStream;
 import io.gravitee.policy.api.annotations.OnResponseContent;
@@ -33,6 +34,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * @author Azize ELAMRANI (azize.elamrani at graviteesource.com)
+ * @author GraviteeSource Team
+ */
 public class HTMLToJSONTransformationPolicy {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
@@ -45,7 +50,7 @@ public class HTMLToJSONTransformationPolicy {
 
     @OnResponseContent
     public ReadWriteStream onResponseContent(Response response) {
-        return TransformableStreamBuilder
+        return TransformableResponseStreamBuilder
                 .on(response)
                 .contentType(MediaType.APPLICATION_JSON)
                 .transform(input -> {
