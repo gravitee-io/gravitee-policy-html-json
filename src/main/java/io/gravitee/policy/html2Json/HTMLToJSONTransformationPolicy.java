@@ -40,6 +40,8 @@ import java.util.stream.Collectors;
  */
 public class HTMLToJSONTransformationPolicy {
 
+    private final static String APPLICATION_JSON = MediaType.APPLICATION_JSON + "; charset=UTF-8";
+
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     private final HTMLToJSONTransformationPolicyConfiguration htmlToJSONTransformationPolicyConfiguration;
@@ -52,7 +54,7 @@ public class HTMLToJSONTransformationPolicy {
     public ReadWriteStream onResponseContent(Response response) {
         return TransformableResponseStreamBuilder
                 .on(response)
-                .contentType(MediaType.APPLICATION_JSON)
+                .contentType(APPLICATION_JSON)
                 .transform(input -> {
                     final Map<String, Object> jsonContent = new HashMap<>();
 
