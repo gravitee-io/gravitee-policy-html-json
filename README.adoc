@@ -8,30 +8,27 @@ endif::[]
 == Scope
 
 |===
-|onRequest |onResponse
-
-|
-|
-
+|onRequest|onResponse|onRequestContent|onResponseContent
+||||X
 |===
 
 == Description
 
-Todo
+The HTML to JSON transformation policy lets you apply a transformation on the response content.
+
+This policy is based on the https://jsoup.org[jsoup] HTML parser.
+The only thing you have to do using Gravitee.io API Management is to provide your JSON field names with the
+associated selectors.
 
 == Configuration
 
 You can configure the policy with the following options :
 
 |===
-|Property |Required |Description |Type |Default
-
-|Todo
-|Todo
-|Todo
-|Todo
-|_todo_
-
+|Property |Required |Description |Type
+|jsonName |true|The JSON field name where to put the result of the selection|String
+|selector |true|HTML/CSS selector used to select an element and get the text|String
+|array    |false|Used to now if the selection should be returned as an array or not|Boolean
 |===
 
 
@@ -39,6 +36,19 @@ You can configure the policy with the following options :
 .Sample
 ----
 "html-json": {
-  "todo": true
+    "selectors":
+        [
+            {
+                "array": false,
+                "jsonName": "test",
+                "selector": ".class h1"
+            },
+            {
+                "array": true,
+                "jsonName": "testArray",
+                "selector": ".container ul"
+            }
+        ]
+    }
 }
 ----
