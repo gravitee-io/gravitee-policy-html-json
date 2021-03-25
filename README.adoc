@@ -20,6 +20,10 @@ This policy is based on the https://jsoup.org[jsoup^] HTML parser.
 In APIM, all you need to do is provide your JSON field names with the
 associated selectors.
 
+=== Policy identifier
+
+You can enable or disable the policy with policy identifier `html-json`.
+
 == Configuration
 
 You can configure the policy with the following options:
