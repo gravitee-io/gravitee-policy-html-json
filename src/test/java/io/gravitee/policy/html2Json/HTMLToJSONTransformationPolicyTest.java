@@ -20,13 +20,8 @@ import org.junit.Test;
 public class HTMLToJSONTransformationPolicyTest {
 
     @Test
-    public void testOnRequest() throws Exception {
-
-    }
+    public void testOnRequest() throws Exception {}
 
     @Test
-    public void testOnResponse() throws Exception {
-
-    }
-
+    public void testOnResponse() throws Exception {}
 }
