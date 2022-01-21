@@ -24,15 +24,14 @@ import io.gravitee.gateway.api.http.stream.TransformableResponseStreamBuilder;
 import io.gravitee.gateway.api.http.stream.TransformableStreamBuilder;
 import io.gravitee.gateway.api.stream.ReadWriteStream;
 import io.gravitee.policy.api.annotations.OnResponseContent;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 /**
  * @author Azize ELAMRANI (azize.elamrani at graviteesource.com)
@@ -40,7 +39,7 @@ import java.util.stream.Collectors;
  */
 public class HTMLToJSONTransformationPolicy {
 
-    private final static String APPLICATION_JSON = MediaType.APPLICATION_JSON + "; charset=UTF-8";
+    private static final String APPLICATION_JSON = MediaType.APPLICATION_JSON + "; charset=UTF-8";
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
@@ -53,29 +52,29 @@ public class HTMLToJSONTransformationPolicy {
     @OnResponseContent
     public ReadWriteStream onResponseContent(Response response) {
         return TransformableResponseStreamBuilder
-                .on(response)
-                .contentType(APPLICATION_JSON)
-                .transform(input -> {
-                    final Map<String, Object> jsonContent = new HashMap<>();
+            .on(response)
+            .contentType(APPLICATION_JSON)
+            .transform(input -> {
+                final Map<String, Object> jsonContent = new HashMap<>();
 
-                    final Document document = Jsoup.parse(input.toString());
+                final Document document = Jsoup.parse(input.toString());
 
-                    for (final HTMLToJSONTransformationPolicyConfiguration.Selector selector : htmlToJSONTransformationPolicyConfiguration.getSelectors()) {
-                        if (selector.isArray()) {
-                            final Elements selectedElement = document.select(selector.getSelector());
-                            final List<String> elements = selectedElement.stream().map(Element::text).collect(Collectors.toList());
-                            jsonContent.put(selector.getJsonName(), elements);
-                        } else {
-                            jsonContent.put(selector.getJsonName(), document.select(selector.getSelector()).text());
-                        }
+                for (final HTMLToJSONTransformationPolicyConfiguration.Selector selector : htmlToJSONTransformationPolicyConfiguration.getSelectors()) {
+                    if (selector.isArray()) {
+                        final Elements selectedElement = document.select(selector.getSelector());
+                        final List<String> elements = selectedElement.stream().map(Element::text).collect(Collectors.toList());
+                        jsonContent.put(selector.getJsonName(), elements);
+                    } else {
+                        jsonContent.put(selector.getJsonName(), document.select(selector.getSelector()).text());
                     }
+                }
 
-                    try {
-                        return Buffer.buffer(objectMapper.writeValueAsString(jsonContent));
-                    } catch (JsonProcessingException ex) {
-                        throw new IllegalStateException("Unable to transform into JSON: " + ex.getMessage(), ex);
-                    }
-                })
-                .build();
+                try {
+                    return Buffer.buffer(objectMapper.writeValueAsString(jsonContent));
+                } catch (JsonProcessingException ex) {
+                    throw new IllegalStateException("Unable to transform into JSON: " + ex.getMessage(), ex);
+                }
+            })
+            .build();
     }
 }
