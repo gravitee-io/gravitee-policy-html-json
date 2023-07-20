@@ -23,6 +23,14 @@ This policy is based on the https://jsoup.org[jsoup^] HTML parser.
 In APIM, all you need to do is provide your JSON field names with the
 associated selectors.
 
+== Compatibility with APIM
+
+|===
+|Plugin version | APIM version
+
+|1.x            | All supported versions
+|===
+
 == Configuration
 
 You can configure the policy with the following options:
