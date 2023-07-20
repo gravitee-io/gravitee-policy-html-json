@@ -22,7 +22,7 @@
 
     <groupId>io.gravitee.policy</groupId>
     <artifactId>gravitee-policy-html-json</artifactId>
-    <version>1.7.0</version>
+    <version>1.6.1</version>
 
     <name>Gravitee.io APIM - Policy - HTML to JSON Transformation</name>
     <description>The HTML to JSON Transformation Gravitee Policy allows to get a json by parsing an html content</description>
