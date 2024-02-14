@@ -1,3 +1,10 @@
+## [1.6.3](https://github.com/gravitee-io/gravitee-policy-html-json/compare/1.6.2...1.6.3) (2024-02-14)
+
+
+### Bug Fixes
+
+* upgrade json to 1.17.2 ([c4a3d7b](https://github.com/gravitee-io/gravitee-policy-html-json/commit/c4a3d7bfecbd9a127a5b79b69bb364b57d7c8c24))
+
 ## [1.6.2](https://github.com/gravitee-io/gravitee-policy-html-json/compare/1.6.1...1.6.2) (2023-07-21)
 
 
