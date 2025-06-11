@@ -1,0 +1,42 @@
+{
+    "id": "proxy-parent-selector",
+    "name": "proxy-parent-selector",
+    "gravitee": "2.0.0",
+    "proxy": {
+        "context_path": "/post-valid-html-to-json",
+        "endpoints": [
+            {
+                "name": "default",
+                "target": "http://localhost:8080/team",
+                "http": {
+                    "connectTimeout": 3000,
+                    "readTimeout": 60000
+                }
+            }
+        ]
+    },
+    "flows": [
+        {
+            "name": "flow-1",
+            "methods": [],
+            "enabled": true,
+            "path-operator": {
+                "path": "/",
+                "operator": "STARTS_WITH"
+            },
+            "pre": [],
+            "post": [
+                {
+                    "name": "HTML to JSON",
+                    "description": "",
+                    "enabled": true,
+                    "policy": "html-json",
+                    "configuration": {
+                        "selectors": [{ "jsonName": "content", "selector": "body" }]
+                    }
+                }
+            ]
+        }
+    ],
+    "resources": []
+}

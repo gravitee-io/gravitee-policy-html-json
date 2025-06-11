@@ -15,13 +15,11 @@
  */
 package io.gravitee.policy.html2Json;
 
-import org.junit.Test;
+import io.gravitee.apim.gateway.tests.sdk.annotations.GatewayTest;
+import io.gravitee.definition.model.ExecutionMode;
+import org.junit.jupiter.api.DisplayNameGeneration;
+import org.junit.jupiter.api.DisplayNameGenerator;
 
-public class HTMLToJSONTransformationPolicyTest {
-
-    @Test
-    public void testOnRequest() throws Exception {}
-
-    @Test
-    public void testOnResponse() throws Exception {}
-}
+@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
+@GatewayTest(v2ExecutionMode = ExecutionMode.V4_EMULATION_ENGINE)
+public class HTMLToJSONTransformationPolicyV4EmulationIntegrationTest extends HTMLToJSONTransformationPolicyV3IntegrationTest {}

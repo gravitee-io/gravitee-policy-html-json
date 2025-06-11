@@ -43,6 +43,9 @@
         <jsoup.version>1.17.2</jsoup.version>
         <!-- Property used by the publication job in CI-->
         <publish-folder-path>graviteeio-apim/plugins/policies</publish-folder-path>
+
+        <jsonassert.version>1.5.1</jsonassert.version>
+        <maven-plugin-properties.version>1.2.1</maven-plugin-properties.version>
     </properties>
 
     <dependencyManagement>
@@ -89,6 +92,30 @@
             <artifactId>jackson-databind</artifactId>
             <scope>provided</scope>
         </dependency>
+
+        <!-- Test scope -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.gravitee.apim.gateway</groupId>
+            <artifactId>gravitee-apim-gateway-tests-sdk</artifactId>
+            <version>${gravitee-apim-bom.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -102,7 +129,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>properties-maven-plugin</artifactId>
-                <version>1.0.0</version>
+                <version>${maven-plugin-properties.version}</version>
                 <executions>
                     <execution>
                         <phase>initialize</phase>
