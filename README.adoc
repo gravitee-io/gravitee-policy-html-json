@@ -28,7 +28,8 @@ associated selectors.
 |===
 |Plugin version | APIM version
 
-|1.x            | All supported versions
+|1.x            | Up to 4.5
+|2.x            | 4.6 to latest
 |===
 
 == Configuration
