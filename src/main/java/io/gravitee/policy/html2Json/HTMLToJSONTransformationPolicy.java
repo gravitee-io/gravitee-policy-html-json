@@ -51,8 +51,7 @@ public class HTMLToJSONTransformationPolicy {
 
     @OnResponseContent
     public ReadWriteStream onResponseContent(Response response) {
-        return TransformableResponseStreamBuilder
-            .on(response)
+        return TransformableResponseStreamBuilder.on(response)
             .contentType(APPLICATION_JSON)
             .transform(input -> {
                 final Map<String, Object> jsonContent = new HashMap<>();
